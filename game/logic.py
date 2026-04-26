@@ -17,7 +17,7 @@ class Logic:
         """Исходное состояние."""
         self.width = window_width
         self.height = window_height
-        player_size = min(self.width, self.height) * 0.05
+        player_size = min(self.width, self.height) * 0.2
         self.player = Player(
             player_size,
             player_size,

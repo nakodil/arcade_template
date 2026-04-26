@@ -42,10 +42,9 @@ class Player(GameObject):
         """Инициализация."""
         texture = arcade.load_texture(config.PLAYER_IMG)
         scale = utils.get_image_scale(texture.width, texture.height, width, height)
-        super().__init__(texture, scale, center_x, center_y)
-        self.vel_x = 0
-        self.vel_y = 0
-        self.speed = 500
+        super().__init__(texture, scale, round(center_x), round(center_y))
+        self.velocity_vector = arcade.Vec2(0, 0)
+        self.speed = 300  # пикселей в секунду
         self.keys = {
             "up": arcade.key.W,
             "down": arcade.key.S,
@@ -55,17 +54,21 @@ class Player(GameObject):
 
     def move(self, delta_time: float) -> None:
         """Движение."""
-        self.center_x += self.vel_x * self.speed * delta_time
-        self.center_y += self.vel_y * self.speed * delta_time
+        if self.velocity_vector.length() <= 0:
+            return
+        direction = self.velocity_vector.normalize()
+        self.center_x += round(direction.x * self.speed * delta_time)
+        self.center_y += round(direction.y * self.speed * delta_time)
 
     def on_keys(self, keys: set[int]) -> None:
         """Обработка клавиш."""
-        self.vel_x, self.vel_y = 0, 0
+        d_x, d_y = 0, 0
         if self.keys["up"] in keys:
-            self.vel_y += 1
+            d_y += 1
         if self.keys["down"] in keys:
-            self.vel_y += -1
+            d_y += -1
         if self.keys["right"] in keys:
-            self.vel_x += 1
+            d_x += 1
         if self.keys["left"] in keys:
-            self.vel_x += -1
+            d_x += -1
+        self.velocity_vector = arcade.Vec2(d_x, d_y)
