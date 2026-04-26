@@ -3,6 +3,7 @@
 import arcade
 
 import config
+from game import Logic
 from views import GameView, MenuView
 
 from .sound import SoundManager
@@ -23,7 +24,7 @@ class App(arcade.Window):
         self.sound = SoundManager()
         self.sound.load_sounds(config.SOUND_DIR)
         self.router = ViewsManager(self)
-        self.game = None  # здесь будет Game: управляет спрайтами по логике игры
+        self.game = Logic()
         self.setup()
 
     def setup(self) -> None:
@@ -36,6 +37,7 @@ class App(arcade.Window):
         """Обновление."""
         self.sound.on_update()
         self.router.on_update()
+        self.game.on_update()
 
 
 class ViewsManager:
@@ -59,3 +61,7 @@ class ViewsManager:
         """Показывает представление в окне."""
         view = self.routs[view_name]()
         self.window.show_view(view)
+
+    def exit(self) -> None:
+        """Завершает приложение."""
+        arcade.exit()

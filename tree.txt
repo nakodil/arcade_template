@@ -1,0 +1,25 @@
+
+|   .gitignore
+|   config.py
+|   main.py
+|   make_distrib.txt
+|   ruff.toml
+|   tree.txt
+|
++---assets
+|   +---font
+|   +---img
+|   \---sound
+|
++---core
+|   |   app.py
+|   |   sound.py
+|   |   utils.py
+|   |   __init__.py
+|
++---views
+|   |   base_view.py
+|   |   game_view.py
+|   |   menu_view.py
+|   |   __init__.py
+|

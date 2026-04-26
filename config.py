@@ -9,7 +9,7 @@ else:  # запуск из консоли
     BASE_DIR = Path(__file__).resolve().parent
 
 ASSETS_DIR = BASE_DIR / "assets"
-IMG_DIR = ASSETS_DIR / "images"
+IMG_DIR = ASSETS_DIR / "img"
 SOUND_DIR = ASSETS_DIR / "sound"
 
 TITLE = "Мое приложение на Python Arcade"
