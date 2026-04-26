@@ -31,8 +31,8 @@ class MenuView(BaseView):
         self.labels.append(hints_lbl)
 
     def on_key_press(self, symbol: int, modifiers: int) -> None:
-        """ESC - выход (родительский), ENTER - играть."""
-        if symbol == arcade.key.ENTER:
+        """ESC - выход, ENTER - играть."""
+        if symbol == arcade.key.ESCAPE:
             self.window.router.exit()
         if symbol == arcade.key.ENTER:
             self.window.router.show("game")

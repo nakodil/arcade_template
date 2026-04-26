@@ -20,7 +20,7 @@ class App(arcade.Window):
             представление: спрайты, текстовые объекты, орисовка
             роутер: переключение представлений
         """
-        super().__init__(fullscreen=True, title=config.TITLE)
+        super().__init__(fullscreen=True, title=config.TITLE, vsync=True)
         self.sound = SoundManager()
         self.sound.load_sounds(config.SOUND_DIR)
         self.router = ViewsManager(self)
@@ -37,7 +37,7 @@ class App(arcade.Window):
         """Обновление."""
         self.sound.on_update()
         self.router.on_update()
-        self.game.on_update()
+        self.game.on_update(delta_time)
 
 
 class ViewsManager:
