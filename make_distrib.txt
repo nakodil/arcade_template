@@ -1,0 +1,13 @@
+pip install pyinstaller
+
+pyinstaller -makespec --onefile --windowed main.py
+
+# В analytics файла .spec
+datas=[
+    ('assets', 'assets'),
+],
+
+# В EXE файла .spec
+icon='assets/img/icon.ico',
+
+pyinstaller main.spec
